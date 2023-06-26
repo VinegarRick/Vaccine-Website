@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <div>
         <p>0 doses have been administered.</p>
-        <div className={"loadimage form"}>
+        <div className={"loadimage"}>
         
         </div>
     </div>

@@ -5,98 +5,78 @@ import { useNavigate } from "react-router-dom";
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
-  useEffect(() => {
 
-  }, []);
+  const userStore = useSelector((state) => state.userReducer);
+  const [username, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {}, []);
 
   const onTextChange = (evt) => {
     const target = evt.target;
     const classList = target.classList;
     const value = target.value;
 
-    /*if (classList.contains("username")) {
+    if (classList.contains("username")) {
       setUserName(value);
     } else if (classList.contains("pass")) {
       setPassword(value);
-    } else {
-      //setMobile(value);
-    }*/
+    }
 
     evt.preventDefault();
   };
 
   const signInUser = (evt) => {
+    //dispatch(verifyUser(username, password))
 
     evt.preventDefault();
   };
 
-  const signUpUser = (evt) => {
-    navigate("/signup")
-
-    evt.preventDefault();
+  const navigateToSignUp = () => {
+    navigate("/signup");
   };
-
 
   return (
-    <>
-      <h1>Sign In</h1>
-      <section className="componentClass">
-        <div className="form col-md-8">
-          <div className="col-md-12">
-            <b>User Name</b>
-            <input
-              type="text"
-              className="form-control col-md-6 username"
-              //value={userName}
-              placeholder="Enter user name here"
-              onChange={onTextChange}
-              maxLength={40}
-            />
-          </div>
+    <div className="sign-in-container">
+      <div className="signin-form col-md-8">
+        <h1 className="sign-in-text">Sign In</h1>
+        <p className="subtext">Stay updated on your vaccinations</p>
 
-          <div className="col-md-12">
-            <b>Password</b>
-            <input
-              type="password"
-              className="form-control col-md-6 pass"
-              //value={password}
-              placeholder="Enter password here"
-              onChange={onTextChange}
-              maxLength={40}
-            />
-          </div>
-
+        <div>
           <input
-            type="button"
-            className="btn btn-primary col-md-2 signInUser"
-            value="Sign In"
-            onClick={signInUser}
+            type="text"
+            className="form-control username-input-field"
+            placeholder="Username"
+            onChange={onTextChange}
+            maxLength={40}
           />
-
-            {/*<p>New to site? Join here.</p>
-            <input
-                type="button"
-                className="btn btn-primary col-md-2 signUpUser"
-                value="Sign Up"
-                onClick={signUpUser}
-              />*/}
-
         </div>
-      </section>
 
-      <div>
-      <p>New to site? Join here.</p>
-        <input
-            type="button"
-            className="btn btn-primary col-md-2 signUpUser"
-            value="Sign Up"
-            onClick={signUpUser}
+        <div>
+          <input
+            type="password"
+            className="form-control input-field"
+            placeholder="Password"
+            onChange={onTextChange}
+            maxLength={40}
           />
+        </div>
+
+        <input
+          type="button"
+          className="btn btn-primary sign-in-button"
+          value="Sign In"
+          onClick={signInUser}
+        />
+
+        <p className="join-here-text">
+          New to site?{" "}
+          <span className="join-here-link" onClick={navigateToSignUp}>
+            Join here.
+          </span>
+        </p>
       </div>
-
-
-    </>
+    </div>
   );
 };
 

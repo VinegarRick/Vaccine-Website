@@ -9,11 +9,13 @@ schemaObj = mongooseObj.Schema; //using the schema class from mongoose
 mongooseObj.connect("mongodb://127.0.0.1/mernstack15"); 
 
 let userSchema = new schemaObj({
-    userName : {type: String, required : true},
+    username : {type: String, required : true},
     password: {type:String, required:true},
-    street: String,
+    email: String,
     mobile: Number,
-    hobbies: []
+    address: String,
+    age: Number,
+    gender: String
 },{
     versionKey: false //false - set to false then it wont create in mongodb
 }

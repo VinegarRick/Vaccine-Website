@@ -21,10 +21,10 @@ const Header = () => {
 
     return(
         <>
-            <div>
-                <NavLink to="/home" className="button" activeclassname="success" >Home </NavLink> 
-                <NavLink to="/about" className="button" activeclassname="success" >About </NavLink> 
-                <NavLink to="/signin" className="button" activeclassname="success" >Login </NavLink> 
+            <div className="navbar">
+                <NavLink to="/home" className="nav-button" activeclassname="success" >Home </NavLink> 
+                <NavLink to="/about" className="nav-button" activeclassname="success" >About </NavLink> 
+                <NavLink to="/signin" className="nav-button" activeclassname="success" >Login </NavLink> 
                 {/*{userName != "Guest" && (<>
 
                 </>)*/}
