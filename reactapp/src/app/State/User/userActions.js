@@ -5,8 +5,12 @@ export const signUpUser = (newuser) => {
     return (dispatch) => {
         axios
           .post("http://localhost:9000/user/api/signupuser", newuser)
+          .then((response) => {
+            return response.data;
+          })
           .catch((err) => {
             console.log("Error while saving new user: ", err);
+            return 0;
           });
       };
 }

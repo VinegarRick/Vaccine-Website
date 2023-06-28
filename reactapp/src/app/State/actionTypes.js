@@ -4,3 +4,7 @@
 export const AddUserToStore = "USER.ADDUSERTOSTORE";
 
 export const SignOut = "USER.SIGNOUT";
+
+export const UserAlreadyExists = "USER.USERALREADYEXISTS";
+
+export const IncorrectUserCreds = "USER.INCORRECTUSERCREDS";

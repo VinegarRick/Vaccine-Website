@@ -16,6 +16,7 @@ const SignUp = () => {
   const [age, setAge] = useState(0);
   const [gender, setGender] = useState("");
   const [signedUp, setSignedUp] = useState(false);
+  const [userExists, setUserExists] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -48,7 +49,7 @@ const SignUp = () => {
     evt.preventDefault();
   };
 
-  const signUp = (evt) => {
+  const signUp = async (evt) => {
     const newUser = {
       username: username,
       password: password,
@@ -59,9 +60,26 @@ const SignUp = () => {
       gender: gender
     }
 
-    dispatch(signUpUser(newUser))
-    setSignedUp(true)
-    //navigate("/signin")
+    /*dispatch(signUpUser(newUser)).then((result) => {
+      if (result) {
+        setSignedUp(true)
+        //setUserExists(false)
+      } else {
+        setUserExists(true)
+      }
+    })*/
+
+    try {
+      const result = await dispatch(signUpUser(newUser));
+      if (result) {
+        setSignedUp(true);
+        // setUserExists(false)
+      } else {
+        setUserExists(true);
+      }
+    } catch (error) {
+      console.log("Error while signing up:", error);
+    }
 
     evt.preventDefault();
   };
@@ -88,6 +106,10 @@ const SignUp = () => {
             onChange={onTextChange}
             maxLength={40}
           />
+        </div>
+          {userExists && <p style={{ color: "red" }}> Username is already taken </p>}
+        <div>
+
         </div>
 
         <div>

@@ -220,9 +220,12 @@ textarea {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  padding: 20px; /* Add padding to create space between the border and the content */
-  box-sizing: border-box; /* Include padding in the total width and height */
+  padding: 20px; 
+  box-sizing: border-box;
+  overflow: auto;
+  /*position: relative;*/
 }
+
 
 /* Add a thin vertical rectangle border around the form */
 .signin-form {
@@ -251,6 +254,13 @@ textarea {
   gap: 8px; /* Add gap between the form content */
   max-width: 600px; /* Adjust the maximum width of the form */
   margin: 20px auto 0; /* Center the form horizontally */
+}
+
+@media (max-width: 600px) {
+  .signin-form, .signup-form {
+    max-width: 100%; /* Adjust the maximum width as needed */
+    margin: 0; /* Remove the margin */
+  }
 }
 
 /* Update the CSS rules for buttons and input fields */

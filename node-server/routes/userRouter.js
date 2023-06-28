@@ -13,24 +13,24 @@ userRoutes.post("/api/signupuser", (req, res) => {
     .then((existingUser) => {
       if (existingUser) {
         console.log("user already exists: ", existingUser);
-        res.send(existingUser);
+        res.send(0);
       } else {
         let newUser = new UserModel(userToSave);
         newUser
           .save()
           .then((newUser) => {
             console.log("successful signup ", newUser);
-            res.send(newUser);
+            res.send(1);
           })
           .catch((err1) => {
             console.log("err signup", err1);
-            res.send("error while sign up");
+            res.send(0);
           });
       }
     })
     .catch((err) => {
-      console.log("err while login ", err);
-      res.send("Error while Login - existing user");
+      console.log("err while signing up ", err);
+      res.send(0);
     });
 });
 
