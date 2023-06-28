@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { signUpUser } from "../../State/User/userActions";
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const userStore = useSelector((state) => state.userReducer);
+  const userStore = useSelector((state) => state.userReducer.user);
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -14,14 +15,20 @@ const SignUp = () => {
   const [address, setAddress] = useState("");
   const [age, setAge] = useState(0);
   const [gender, setGender] = useState("");
+  const [signedUp, setSignedUp] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    return () => {
+      console.log("Unmounting signup component")
+      setSignedUp(false)
+    }
+  }, []);
 
   const onTextChange = (evt) => {
     const target = evt.target;
     const classList = target.classList;
     const value = target.value;
-
+    
     if (classList.contains("username")) {
       setUserName(value);
     } else if (classList.contains("pass")) {
@@ -41,8 +48,20 @@ const SignUp = () => {
     evt.preventDefault();
   };
 
-  const signUpUser = (evt) => {
-    //dispatch(addUserToDB(username, password))
+  const signUp = (evt) => {
+    const newUser = {
+      username: username,
+      password: password,
+      email: email,
+      mobile: mobile,
+      address: address,
+      age: age,
+      gender: gender
+    }
+
+    dispatch(signUpUser(newUser))
+    setSignedUp(true)
+    //navigate("/signin")
 
     evt.preventDefault();
   };
@@ -52,6 +71,10 @@ const SignUp = () => {
   };
 
   return (
+    <div>
+      {signedUp ? (
+        <h3> Your account has been successfully created. Please sign in!</h3>
+      ) : (
     <div className="sign-in-container">
       <div className="signup-form col-md-8">
         <h1 className="sign-in-text">Sign Up</h1>
@@ -60,7 +83,7 @@ const SignUp = () => {
         <div>
           <input
             type="text"
-            className="form-control username-input-field"
+            className="form-control username-input-field username"
             placeholder="Username"
             onChange={onTextChange}
             maxLength={40}
@@ -70,7 +93,7 @@ const SignUp = () => {
         <div>
           <input
             type="password"
-            className="form-control input-field"
+            className="form-control input-field pass"
             placeholder="Password"
             onChange={onTextChange}
             maxLength={40}
@@ -80,7 +103,7 @@ const SignUp = () => {
         <div>
           <input
             type="text"
-            className="form-control input-field"
+            className="form-control input-field email"
             placeholder="Email"
             onChange={onTextChange}
             maxLength={40}
@@ -90,7 +113,7 @@ const SignUp = () => {
         <div>
           <input
             type="text"
-            className="form-control input-field"
+            className="form-control input-field mobile"
             placeholder="Mobile"
             onChange={onTextChange}
             maxLength={40}
@@ -100,7 +123,7 @@ const SignUp = () => {
         <div>
           <input
             type="text"
-            className="form-control input-field"
+            className="form-control input-field address"
             placeholder="Address"
             onChange={onTextChange}
             maxLength={40}
@@ -110,7 +133,7 @@ const SignUp = () => {
         <div>
           <input
             type="number"
-            className="form-control input-field"
+            className="form-control input-field age"
             placeholder="Age"
             onChange={onTextChange}
             maxLength={40}
@@ -120,7 +143,7 @@ const SignUp = () => {
         <div>
           <input
             type="text"
-            className="form-control input-field"
+            className="form-control input-field gender"
             placeholder="Gender"
             onChange={onTextChange}
             maxLength={40}
@@ -131,7 +154,7 @@ const SignUp = () => {
           type="button"
           className="btn btn-primary sign-in-button"
           value="Sign Up"
-          onClick={signUpUser}
+          onClick={signUp}
         />
 
         <p className="join-here-text">
@@ -141,6 +164,8 @@ const SignUp = () => {
           </span>
         </p>
       </div>
+    </div>
+    )}
     </div>
   );
 };

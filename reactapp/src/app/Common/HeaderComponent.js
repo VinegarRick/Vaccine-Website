@@ -1,36 +1,53 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";//hoooks for navigations
-import { connect, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { connect, useSelector, useDispatch } from "react-redux";
+import { signOutUser } from "../State/User/userActions";
 
 const Header = () => {
+  const username = useSelector((state) => state.userReducer.user.username);
+  const dispatch = useDispatch();
+  
+  const signOutAction = (evt) => {
+    dispatch(signOutUser());
+    evt.preventDefault();
+  };
 
-    //using connect and mapStateToProps
-    //let userName = props.User.userName; //it is available as props as we are returning from mapSateToProps
-
-    //let userName = useSelector((state)=>state.userReducer.User.userName)
-
-    //by using useSelector hook
-    //let password = useSelector((state)=>state.userReducer.User.password) //it is mapping store as props
-
-    /*let goAboutHook = useNavigate();
-
-    let goToAboutClick = (evt)=>{
-        goAboutHook("/about/2023")
-        evt.preventDefault();
-    }*/
-
-    return(
-        <>
-            <div className="navbar">
-                <NavLink to="/home" className="nav-button" activeclassname="success" >Home </NavLink> 
-                <NavLink to="/about" className="nav-button" activeclassname="success" >About </NavLink> 
-                <NavLink to="/signin" className="nav-button" activeclassname="success" >Login </NavLink> 
-                {/*{userName != "Guest" && (<>
-
-                </>)*/}
-            </div>
-        </>
-    )
-}
+  return (
+    <>
+      {username === "Guest" ? (
+        <b>Please sign in to see other features.</b>
+      ) : (
+        <b>Hello {username}</b>
+      )}
+      <div className="navbar">
+        <div className="nav-left-buttons">
+          <NavLink to="/home" className="navbar-link" activeClassName="success">
+            Home
+          </NavLink>
+          <NavLink to="/about" className="navbar-link" activeClassName="success">
+            About
+          </NavLink>
+        </div>
+        <div className="nav-right-buttons">
+          {username === "Guest" && (
+            <NavLink to="/signin" className="navbar-link" activeClassName="success">
+              Login
+            </NavLink>
+          )}
+          {username !== "Guest" && (
+            <NavLink
+              to="/home"
+              className="navbar-link"
+              activeClassName="success"
+              onClick={signOutAction}
+            >
+              Logout
+            </NavLink>
+          )}
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default Header;

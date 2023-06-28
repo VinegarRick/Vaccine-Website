@@ -305,8 +305,7 @@ textarea {
 
 .navbar {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Center align the navbar items */
   background-color: #19A6A6;
   padding: 10px;
 }
@@ -315,13 +314,24 @@ textarea {
   color: #333;
   text-decoration: none;
   font-weight: bold;
-  margin: 0 10px;
+  margin: 0 5px;
   padding: 5px;
 }
 
 .navbar-link:hover {
   background-color: #e2e2e2;
   border-radius: 4px;
+}
+
+.nav-left-buttons {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-right-buttons {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .nav-button {

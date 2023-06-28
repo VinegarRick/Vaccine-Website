@@ -9,6 +9,9 @@ console.log(__filename) // complete file path with name
 const admin = express(); //new admin application for admin requests
 const adminRouter = require("./routes/adminRoute");
 
+const userApp = express();
+const userRouter = require("./routes/userRouter");
+
 //adding cors as middleware to top level of API so that cors is set to true on all endpoint
 app.use(cors());
 
@@ -49,6 +52,9 @@ app.get('/html', (req, res) => {
 //application mounting
 app.use('/admin',admin);
 admin.use("/",adminRouter)
+
+app.use('/user',userApp);
+userApp.use("/",userRouter);
 
 app.get('/', function (req, res) {
     res.send('Hello World from Express')

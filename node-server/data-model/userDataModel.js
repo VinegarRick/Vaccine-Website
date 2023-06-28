@@ -5,8 +5,8 @@
 let mongooseObj = require("mongoose");
 schemaObj = mongooseObj.Schema; //using the schema class from mongoose
 
-//creates db with name mernstack15 or opens a connection if already present
-mongooseObj.connect("mongodb://127.0.0.1/mernstack15"); 
+//creates db with name vaccination or opens a connection if already present
+mongooseObj.connect("mongodb://127.0.0.1/vaccination"); 
 
 let userSchema = new schemaObj({
     username : {type: String, required : true},
