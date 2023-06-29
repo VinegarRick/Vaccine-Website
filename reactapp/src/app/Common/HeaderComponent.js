@@ -27,7 +27,21 @@ const Header = () => {
           <NavLink to="/about" className="navbar-link" activeClassName="success">
             About
           </NavLink>
+          <NavLink to="/about" className="navbar-link" activeClassName="success">
+            Statistics
+          </NavLink>
+          
+          {username !== "Guest" && (
+            <NavLink to="/schedule" className="navbar-link" activeClassName="success">
+              Schedule
+            </NavLink>)}
+          {username !== "Guest" && (
+            <NavLink to="/visits" className="navbar-link" activeClassName="success">
+              Visits
+            </NavLink>
+          )}
         </div>
+
         <div className="nav-right-buttons">
           {username === "Guest" && (
             <NavLink to="/signin" className="navbar-link" activeClassName="success">

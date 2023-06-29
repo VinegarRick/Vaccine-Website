@@ -13,24 +13,24 @@ userRoutes.post("/api/signupuser", (req, res) => {
     .then((existingUser) => {
       if (existingUser) {
         console.log("user already exists: ", existingUser);
-        res.send(0);
+        res.sendStatus(409);
       } else {
         let newUser = new UserModel(userToSave);
         newUser
           .save()
           .then((newUser) => {
             console.log("successful signup ", newUser);
-            res.send(1);
+            res.sendStatus(201);
           })
           .catch((err1) => {
             console.log("err signup", err1);
-            res.send(0);
+            res.sendStatus(500);
           });
       }
     })
     .catch((err) => {
       console.log("err while signing up ", err);
-      res.send(0);
+      res.sendStatus(500);
     });
 });
 
@@ -48,16 +48,16 @@ userRoutes.post("/api/signinuser", (req, res) => {
                 res.send(existingUser)
             } else {
                 console.log("unsuccessful sign in, incorrect password")
-                res.send("incorrect password")
+                res.sendStatus(401)
             }
         } else {
-            console.log("err signing in");
-            res.send("error while signing in");
+            console.log("err signing in, user does not exist");
+            res.sendStatus(404);
         };
       })
       .catch((err) => {
         console.log("err while signing in ", err);
-        res.send("Error while signing in - user does not exist");
+        res.sendStatus(500);
       });
   });
   

@@ -1,7 +1,7 @@
 import * as actionTypes from "../actionTypes";
 import axios from "axios";
 
-export const signUpUser = (newuser) => {
+/*export const signUpUser = (newuser) => {
     return (dispatch) => {
         axios
           .post("http://localhost:9000/user/api/signupuser", newuser)
@@ -13,21 +13,67 @@ export const signUpUser = (newuser) => {
             return 0;
           });
       };
-}
+}*/
 
-export const signInUser = (creds) => {
+export const signUpUser = (newuser) => {
+    return (dispatch) => {
+        return new Promise((resolve, reject) => {
+            axios
+                .post("http://localhost:9000/user/api/signupuser", newuser)
+                .then((response) => {
+                    resolve({data: response.data, status: response.status});
+                })
+                .catch((err) => {
+                    console.log("Error while saving new user: ", err);
+                    reject(err);
+                });
+        });
+    }
+};
+  
+
+/*export const signInUser = (creds) => {
     return (dispatch) => {
         axios
             .post("http://localhost:9000/user/api/signinuser", creds)
-            .then((ServerData) => {
-                let signedUser = ServerData.data;
-                dispatch(addUserToStore(signedUser));
+            .then((response) => {
+                //let signedUser = response.data;
+                console.log("heyhey " + (typeof response.data) + " " + response.data)
+                if (typeof response.data === "object" && response.data !== null) {
+                    dispatch(addUserToStore(response.data));
+                    return 0;
+                } else {
+                    return response.data;
+                }
             })
             .catch((err) => {
                 console.log("Error while signing in user: ", err);
+                return '1';
             });
     }
-}
+}*/
+
+export const signInUser = (creds) => {
+    return (dispatch) => {
+      return new Promise((resolve, reject) => {
+        axios
+          .post("http://localhost:9000/user/api/signinuser", creds)
+          .then((response) => {
+            //if (typeof response.data === "object" && response.data !== null) {
+              dispatch(addUserToStore(response.data));
+              resolve({ data: response.data, status: response.status });
+            /*} else {
+              resolve({ data: response.data, status: response.status });
+            }*/
+          })
+          .catch((err) => {
+            console.log("Error while signing in user: ", err.response.status);
+            reject({data: err.response.data, status: err.response.status});
+          });
+      });
+    };
+  };
+  
 
 export const addUserToStore = (user) => {
     return {
@@ -41,7 +87,7 @@ export const signOutUser = () => {
         username : "Guest",
         password : "",
         email: "",
-        mobile : 0,
+        mobile : "",
         address : "",
         age: 0,
         gender: ""

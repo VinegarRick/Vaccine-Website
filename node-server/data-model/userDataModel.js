@@ -12,7 +12,7 @@ let userSchema = new schemaObj({
     username : {type: String, required : true},
     password: {type:String, required:true},
     email: String,
-    mobile: Number,
+    mobile: String,
     address: String,
     age: Number,
     gender: String

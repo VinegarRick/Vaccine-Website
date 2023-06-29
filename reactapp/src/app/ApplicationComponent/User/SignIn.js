@@ -10,6 +10,8 @@ const SignIn = () => {
   const userStore = useSelector((state) => state.userReducer.user);
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [wrongPassword, setWrongPassword] = useState(false);
+  const [userDoesNotExist, setUserDoesNotExist] = useState(false);
 
   useEffect(() => {}, []);
 
@@ -27,13 +29,39 @@ const SignIn = () => {
     evt.preventDefault();
   };
 
-  const signIn = (evt) => {
+  const signIn = async (evt) => {
     const creds = {
       username: username,
       password: password
     }
+
+    /*try {
+      const result = await dispatch(signInUser(creds))
+      console.log("yoyo: " + result)
+      if (result == 1) {
+        setUserDoesNotExist(true)
+      } else if (result == -1) {
+        setWrongPassword(true)
+      } else {
+        navigate("/home");
+      }
+    } catch (error) {
+      console.log("Error while signing in", error)
+    }*/
+
     dispatch(signInUser(creds))
-    navigate("/home");
+      .then((result) => {
+        navigate("/home")
+      })
+      .catch((error) => {
+        if (error.status == 404) {
+          setUserDoesNotExist(true)
+        } else if (error.status == 401) {
+          setWrongPassword(true)
+        } else {
+          console.log("Error while signing in")
+        }
+      })
 
     evt.preventDefault();
   };
@@ -59,6 +87,11 @@ const SignIn = () => {
         </div>
 
         <div>
+          {userDoesNotExist && <p style={{ color: "red" }}> Username does not exist </p>}
+        </div>
+
+
+        <div>
           <input
             type="password"
             className="form-control input-field pass"
@@ -66,6 +99,10 @@ const SignIn = () => {
             onChange={onTextChange}
             maxLength={40}
           />
+        </div>
+
+        <div>
+          {wrongPassword && <p style={{ color: "red" }}> Incorrect password </p>}
         </div>
 
         <input

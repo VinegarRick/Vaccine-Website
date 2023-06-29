@@ -5,13 +5,11 @@ const initialState = {
         username : "Guest",
         password : "",
         email: "",
-        mobile : 0,
+        mobile : "",
         address : "",
         age: 0,
         gender: ""
-    },
-    signupSuccess : true,
-    signinSuccess : true
+    }
 }
 
 const userReducer = (state=initialState, action)=>{
@@ -34,6 +32,12 @@ const userReducer = (state=initialState, action)=>{
             }*/
             
             return {...state, user : action.payload}
+
+        case actionTypes.UserAlreadyExists:
+            return {...state, signupSuccess : false}
+
+        case actionTypes.IncorrectUserCreds:
+            return {...state, signinSuccess : false}
 
         default:
             return state;

@@ -69,7 +69,7 @@ const SignUp = () => {
       }
     })*/
 
-    try {
+    /*try {
       const result = await dispatch(signUpUser(newUser));
       if (result) {
         setSignedUp(true);
@@ -79,7 +79,22 @@ const SignUp = () => {
       }
     } catch (error) {
       console.log("Error while signing up:", error);
-    }
+    }*/
+
+    dispatch(signUpUser(newUser))
+      .then((result) => {
+        /*console.log(result.status)
+        if (result.status === 201) {
+          setSignedUp(true)
+        } else {
+          setUserExists(true)
+        }*/
+        setSignedUp(true)
+      })
+      .catch((error) => {
+        console.log("Error while signing up", error)
+        setUserExists(true)
+      })
 
     evt.preventDefault();
   };
