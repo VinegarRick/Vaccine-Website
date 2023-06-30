@@ -21,13 +21,19 @@ const Header = () => {
       )}
       <div className="navbar">
         <div className="nav-left-buttons">
+          {username === "Admin" && (
+            <NavLink to="/admin" className="navbar-link" activeClassName="success">
+              Admin
+            </NavLink>
+          )}
+
           <NavLink to="/home" className="navbar-link" activeClassName="success">
             Home
           </NavLink>
           <NavLink to="/about" className="navbar-link" activeClassName="success">
             About
           </NavLink>
-          <NavLink to="/about" className="navbar-link" activeClassName="success">
+          <NavLink to="/stats" className="navbar-link" activeClassName="success">
             Statistics
           </NavLink>
           

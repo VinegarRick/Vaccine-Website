@@ -10,17 +10,23 @@ mongooseObj.connect("mongodb://127.0.0.1/vaccination");
 
 const userSchema = new schemaObj({
     username : {type: String, required : true},
-    password: {type:String, required:true},
+    password: {type: String, required:true},
     email: String,
     mobile: String,
     address: String,
     age: Number,
     gender: String
+})
+
+const personSchema = new schemaObj({
+    user : {type: userSchema, required: true},
+    status : Boolean,
+    dosesSupplied : Number
 },{
     versionKey: false //false - set to false then it wont create in mongodb
 }
 );
 
-let UserModel = mongooseObj.model("user",userSchema);//user - collection name, pluralised by mongodb
+let PersonModel = mongooseObj.model("person",personSchema);//user - collection name, pluralised by mongodb
 
-module.exports = UserModel;//this should be used in userRouter to build user api's
+module.exports = PersonModel;//this should be used in userRouter to build user api's
