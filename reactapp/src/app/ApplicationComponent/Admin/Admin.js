@@ -10,13 +10,18 @@ let Admin = ()=>{
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    let nameRef = useRef(null)
-    let typeRef = useRef(null)
+    let vaccineNameRef = useRef(null)
+    let vaccineTypeRef = useRef(null)
     let priceRef = useRef(null)
     let sideEffectsRef = useRef(null)
     let originRef = useRef(null)
     let dosesRequiredRef = useRef(null)
     let strainsCoveredRef = useRef(null)
+
+    let hospitalNameRef = useRef(null)
+    let hospitalTypeRef = useRef(null)
+    let hospitalAddressRef = useRef(null)
+    let hospitalVaccinesRef = useRef(null)
 
     useEffect(()=>{
         //fetchHospitalList();
@@ -31,16 +36,28 @@ let Admin = ()=>{
         }
       }      
 
-    // once user has updated values in respective textboxes read it and send back to server
-    let readFormData = (evt)=>{
+    let readVaccineFormData = (evt)=>{
         let vaccine = {
-            name : nameRef.current.value,
-            type : typeRef.current.value,
+            name : vaccineNameRef.current.value,
+            type : vaccineTypeRef.current.value,
             price : priceRef.current.value,
             sideEffects : sideEffectsRef.current.value,
             origin : originRef.current.value,
             dosesRequired : dosesRequiredRef.current.value,
             strainsCovered : strainsCoveredRef.current.value
+        }
+
+        // to be handled still
+
+        evt.preventDefault();
+    }
+
+    let readHospitalFormData = (evt)=>{
+        let hospital = {
+            name : hospitalNameRef.current.value,
+            address : hospitalAddressRef.current.value,
+            type : hospitalTypeRef.current.value,
+            vaccineList : hospitalVaccinesRef.current.value
         }
 
         // to be handled still
@@ -60,16 +77,16 @@ let Admin = ()=>{
         <>
             {username == "Admin" && (<>
             <h1>Vaccine</h1>
-            <form className={"form col-md-10 vaccine"} onSubmit={readFormData}>                
+            <form className={"form col-md-10 vaccine"} onSubmit={readVaccineFormData}>                
                 <label>
                     <b>Name:</b>
-                    <input type="text" className={"form-control col-md-12"} ref={nameRef} 
+                    <input type="text" className={"form-control col-md-12"} ref={vaccineNameRef} 
                         placeholder="Please enter vaccine name" maxLength={20} required/>
                 </label>
                 <br/>
                 <label>
                     <b>Type:</b>
-                    <input type="text" className={"form-control col-md-12"} ref={typeRef} 
+                    <input type="text" className={"form-control col-md-12"} ref={vaccineTypeRef} 
                         placeholder="Please enter vaccine type" maxLength={20} required/>
                 </label>
                 <br/>                
@@ -107,6 +124,36 @@ let Admin = ()=>{
             </form>
             </>)}
 
+            {username == "Admin" && (<>
+            <h1>Hospitals</h1>
+            <form className={"form col-md-10 vaccine"} onSubmit={readHospitalFormData}>                
+                <label>
+                    <b>Name:</b>
+                    <input type="text" className={"form-control col-md-12"} ref={hospitalNameRef} 
+                        placeholder="Please enter vaccine name" maxLength={20} required/>
+                </label>
+                <br/>
+                <label>
+                    <b>Address</b>
+                    <input type="text" className={"form-control col-md-12"} ref={hospitalAddressRef} 
+                        placeholder="Please enter address" maxLength={20} required/>
+                </label>
+                <br/>                
+                <label>
+                    <b>Type:</b>
+                    <input type="text" className={"form-control col-md-12"} ref={hospitalTypeRef} 
+                            placeholder="Please enter type (government/hospital" maxLength={20} required/>
+                </label>
+                <br/>
+                <label>
+                    <b>Vaccines:</b>
+                    <input type="text" className={"form-control col-md-12"} ref={hospitalVaccinesRef} 
+                        placeholder="Please enter available vaccines" maxLength={20} required/>
+                </label>
+                <br/>
+                <input type="submit" className={"btn btn-primary"} value="Save Hospital" />
+            </form>
+            </>)}
 
         </>
     )
