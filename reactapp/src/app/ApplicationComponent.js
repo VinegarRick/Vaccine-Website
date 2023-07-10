@@ -12,6 +12,7 @@ import NotFound from "./Common/NotFoundPage";
 //import User from "./ApplicationComponent/User/UserComponent";
 import SignIn from "./ApplicationComponent/User/SignIn"
 import SignUp from "./ApplicationComponent/User/SignUp"
+import Admin from "./ApplicationComponent/Admin/Admin"
 
 
 export default class Application extends Component {
@@ -31,6 +32,7 @@ export default class Application extends Component {
                 <Routes>
                     <Route path="/" element={<Navigate replace to={"/home"} />}/>
                     <Route path="/home" element={<Home/>} />
+                    <Route path="/admin" element={<Admin/>} />
                     <Route path="/about" element={<About/>} />
                     <Route path="/signin" element={<SignIn/>} />
                     <Route path="/signup" element={<SignUp/>} />
