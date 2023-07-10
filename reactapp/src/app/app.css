@@ -361,3 +361,11 @@ textarea {
 .vaccine-hospital-form-container {
   padding-left: 20px;
 }
+
+.vaccine-header {
+  margin-left: 70px;
+}
+
+.hospital-header {
+  margin-left: 60px;
+}

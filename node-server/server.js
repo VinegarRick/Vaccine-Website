@@ -12,6 +12,12 @@ const adminRouter = require("./routes/adminRoute");
 const userApp = express();
 const userRouter = require("./routes/userRouter");
 
+const vaccineApp = express();
+const vaccineRouter = require("./routes/vaccineRouter");
+
+const hospitalApp = express();
+const hospitalRouter = require("./routes/hospitalRouter");
+
 //adding cors as middleware to top level of API so that cors is set to true on all endpoint
 app.use(cors());
 
@@ -55,6 +61,12 @@ admin.use("/",adminRouter)
 
 app.use('/user',userApp);
 userApp.use("/",userRouter);
+
+app.use('/vaccine',vaccineApp);
+vaccineApp.use("/",vaccineRouter);
+
+app.use('/hospital',hospitalApp);
+hospitalApp.use("/",hospitalRouter);
 
 app.get('/', function (req, res) {
     res.send('Hello World from Express')

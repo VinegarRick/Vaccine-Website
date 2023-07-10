@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"; 
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { saveVaccineToDB, saveHospitalToDB } from "../../State/Admin/adminActions";
+
 
 let Admin = ()=>{
     const username = useSelector((state) => state.userReducer.user.username);
@@ -47,7 +49,8 @@ let Admin = ()=>{
             strainsCovered : strainsCoveredRef.current.value
         }
 
-        // to be handled still
+        dispatch(saveVaccineToDB(vaccine))
+        resetVaccineForm()
 
         evt.preventDefault();
     }
@@ -60,10 +63,28 @@ let Admin = ()=>{
             vaccineList : hospitalVaccinesRef.current.value
         }
 
-        // to be handled still
+        dispatch(saveHospitalToDB(hospital))
+        resetHospitalForm()
 
         evt.preventDefault();
     }
+
+    const resetVaccineForm = () => {
+        vaccineNameRef.current.value = "";
+        vaccineTypeRef.current.value = "";
+        priceRef.current.value = "";
+        sideEffectsRef.current.value = "";
+        originRef.current.value = "";
+        dosesRequiredRef.current.value = "";
+        strainsCoveredRef.current.value = "";
+    };
+
+    const resetHospitalForm = () => {
+        hospitalNameRef.current.value = "";
+        hospitalAddressRef.current.value = "";
+        hospitalTypeRef.current.value = "";
+        hospitalVaccinesRef.current.value = "";
+    };
 
     const handleItemClick = (hospitalName) => {
         setHospitalList((prevList) =>
@@ -77,7 +98,7 @@ let Admin = ()=>{
         <>
             <div className="vaccine-hospital-form-container">
                 {username == "Admin" && (<>
-                <h1>Vaccine</h1>
+                <h1 className="vaccine-header">Vaccine</h1>
                 <form className={"form col-md-10 vaccineForm"} onSubmit={readVaccineFormData}>                
                     <label>
                         <b>Name:</b>
@@ -126,7 +147,7 @@ let Admin = ()=>{
                 </>)}
 
                 {username == "Admin" && (<>
-                <h1>Hospitals</h1>
+                <h1 className="hospital-header">Hospitals</h1>
                 <form className={"form col-md-10 hospitalForm"} onSubmit={readHospitalFormData}>                
                     <label>
                         <b>Name:</b>
