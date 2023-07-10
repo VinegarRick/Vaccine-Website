@@ -75,85 +75,89 @@ let Admin = ()=>{
 
     return(
         <>
-            {username == "Admin" && (<>
-            <h1>Vaccine</h1>
-            <form className={"form col-md-10 vaccine"} onSubmit={readVaccineFormData}>                
-                <label>
-                    <b>Name:</b>
-                    <input type="text" className={"form-control col-md-12"} ref={vaccineNameRef} 
-                        placeholder="Please enter vaccine name" maxLength={20} required/>
-                </label>
-                <br/>
-                <label>
-                    <b>Type:</b>
-                    <input type="text" className={"form-control col-md-12"} ref={vaccineTypeRef} 
-                        placeholder="Please enter vaccine type" maxLength={20} required/>
-                </label>
-                <br/>                
-                <label>
-                    <b>Price:</b>
-                    <input type="number" className={"form-control col-md-12"} ref={priceRef} 
-                            placeholder="Please enter price" maxLength={20} required/>
-                </label>
-                <br/>
-                <label>
-                    <b>Side Effects:</b>
-                    <input type="text" className={"form-control col-md-12"} ref={sideEffectsRef} 
-                        placeholder="Please enter side effects" maxLength={20} required/>
-                </label>
-                <br/>
-                <label>
-                    <b>Origin:</b>
-                    <input type="text" className={"form-control col-md-12"} ref={originRef} 
-                        placeholder="Please enter vaccine origin" maxLength={20} required/>
-                </label>
-                <br/>
-                <label>
-                    <b>Doses Required:</b>
-                    <input type="text" className={"form-control col-md-12"} ref={dosesRequiredRef} 
-                        placeholder="Please enter doses required" maxLength={20} required/>
-                </label>
-                <br/>
-                <label>
-                    <b>Strains Covered:</b>
-                    <input type="text" className={"form-control col-md-12"} ref={strainsCoveredRef} 
-                        placeholder="Please enter strains covered name" maxLength={20} required/>
-                </label>
-                <br/>
-                <input type="submit" className={"btn btn-primary"} value="Save Vaccine" />
-            </form>
-            </>)}
+            <div className="vaccine-hospital-form-container">
+                {username == "Admin" && (<>
+                <h1>Vaccine</h1>
+                <form className={"form col-md-10 vaccineForm"} onSubmit={readVaccineFormData}>                
+                    <label>
+                        <b>Name:</b>
+                        <input type="text" className={"form-control col-md-12"} ref={vaccineNameRef} 
+                            placeholder="Please enter vaccine name" maxLength={20} required/>
+                    </label>
+                    <br/>
+                    <label>
+                        <b>Type:</b>
+                        <input type="text" className={"form-control col-md-12"} ref={vaccineTypeRef} 
+                            placeholder="Please enter vaccine type" maxLength={20} required/>
+                    </label>
+                    <br/>                
+                    <label>
+                        <b>Price:</b>
+                        <input type="number" className={"form-control col-md-12"} ref={priceRef} 
+                                placeholder="Please enter price" maxLength={20} required/>
+                    </label>
+                    <br/>
+                    <label>
+                        <b>Side Effects:</b>
+                        <input type="text" className={"form-control col-md-12"} ref={sideEffectsRef} 
+                            placeholder="Please enter side effects" maxLength={20} required/>
+                    </label>
+                    <br/>
+                    <label>
+                        <b>Origin:</b>
+                        <input type="text" className={"form-control col-md-12"} ref={originRef} 
+                            placeholder="Please enter vaccine origin" maxLength={20} required/>
+                    </label>
+                    <br/>
+                    <label>
+                        <b>Doses Required:</b>
+                        <input type="text" className={"form-control col-md-12"} ref={dosesRequiredRef} 
+                            placeholder="Please enter doses required" maxLength={20} required/>
+                    </label>
+                    <br/>
+                    <label>
+                        <b>Strains Covered:</b>
+                        <input type="text" className={"form-control col-md-12"} ref={strainsCoveredRef} 
+                            placeholder="Please enter strains covered name" maxLength={20} required/>
+                    </label>
+                    <br/>
+                    <input type="submit" className={"btn btn-primary save-vaccine-button"} value="Save Vaccine" />
+                </form>
+                </>)}
 
-            {username == "Admin" && (<>
-            <h1>Hospitals</h1>
-            <form className={"form col-md-10 vaccine"} onSubmit={readHospitalFormData}>                
-                <label>
-                    <b>Name:</b>
-                    <input type="text" className={"form-control col-md-12"} ref={hospitalNameRef} 
-                        placeholder="Please enter vaccine name" maxLength={20} required/>
-                </label>
-                <br/>
-                <label>
-                    <b>Address</b>
-                    <input type="text" className={"form-control col-md-12"} ref={hospitalAddressRef} 
-                        placeholder="Please enter address" maxLength={20} required/>
-                </label>
-                <br/>                
-                <label>
-                    <b>Type:</b>
-                    <input type="text" className={"form-control col-md-12"} ref={hospitalTypeRef} 
-                            placeholder="Please enter type (government/hospital" maxLength={20} required/>
-                </label>
-                <br/>
-                <label>
-                    <b>Vaccines:</b>
-                    <input type="text" className={"form-control col-md-12"} ref={hospitalVaccinesRef} 
-                        placeholder="Please enter available vaccines" maxLength={20} required/>
-                </label>
-                <br/>
-                <input type="submit" className={"btn btn-primary"} value="Save Hospital" />
-            </form>
-            </>)}
+                {username == "Admin" && (<>
+                <h1>Hospitals</h1>
+                <form className={"form col-md-10 hospitalForm"} onSubmit={readHospitalFormData}>                
+                    <label>
+                        <b>Name:</b>
+                        <input type="text" className={"form-control col-md-12"} ref={hospitalNameRef} 
+                            placeholder="Please enter vaccine name" maxLength={20} required/>
+                    </label>
+                    <br/>
+                    <label>
+                        <b>Address</b>
+                        <input type="text" className={"form-control col-md-12"} ref={hospitalAddressRef} 
+                            placeholder="Please enter address" maxLength={20} required/>
+                    </label>
+                    <br/>                
+                    <label>
+                        <b>Type:</b>
+                        <input type="text" className={"form-control col-md-12"} ref={hospitalTypeRef} 
+                                placeholder="Please enter type (government/hospital" maxLength={20} required/>
+                    </label>
+                    <br/>
+                    <label>
+                        <b>Vaccines:</b>
+                        <input type="text" className={"form-control col-md-12"} ref={hospitalVaccinesRef} 
+                            placeholder="Please enter available vaccines" maxLength={20} required/>
+                    </label>
+                    <br/>
+                    <input type="submit" className={"btn btn-primary save-hospital-button"} value="Save Hospital" />
+                </form>
+                </>)}
+            </div>
+
+            <h1>Pending Appointments</h1>
 
         </>
     )

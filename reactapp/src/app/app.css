@@ -351,3 +351,13 @@ textarea {
   text-decoration: none;
   font-weight: bold; 
 }
+
+.save-vaccine-button,
+.save-hospital-button {
+  width: 150px; /* Adjust the width as needed */
+  margin-left: 30px;
+}
+
+.vaccine-hospital-form-container {
+  padding-left: 20px;
+}
