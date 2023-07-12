@@ -13,6 +13,7 @@ import NotFound from "./Common/NotFoundPage";
 import SignIn from "./ApplicationComponent/User/SignIn"
 import SignUp from "./ApplicationComponent/User/SignUp"
 import Admin from "./ApplicationComponent/Admin/Admin"
+import Hospitals from "./ApplicationComponent/Appointment/Hospitals"
 
 
 export default class Application extends Component {
@@ -34,6 +35,7 @@ export default class Application extends Component {
                     <Route path="/home" element={<Home/>} />
                     <Route path="/admin" element={<Admin/>} />
                     <Route path="/about" element={<About/>} />
+                    <Route path="/hospitals" element={<Hospitals/>} />
                     <Route path="/signin" element={<SignIn/>} />
                     <Route path="/signup" element={<SignUp/>} />
                     <Route path="*" element={<NotFound />}/>

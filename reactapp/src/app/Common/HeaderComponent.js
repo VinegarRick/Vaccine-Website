@@ -38,7 +38,7 @@ const Header = () => {
           </NavLink>
           
           {username !== "Guest" && (
-            <NavLink to="/schedule" className="navbar-link" activeClassName="success">
+            <NavLink to="/hospitals" className="navbar-link" activeClassName="success">
               Schedule
             </NavLink>)}
           {username !== "Guest" && (
