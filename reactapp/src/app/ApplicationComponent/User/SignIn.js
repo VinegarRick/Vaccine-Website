@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signInUser } from "../../State/User/userActions";
+import { FetchVaccinesFromDB } from "../../State/Vaccine/vaccineActions";
+//import { FetchHospitalsFromDB } from "../../State/Hospital/hospitalActions";
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -51,6 +53,7 @@ const SignIn = () => {
 
     dispatch(signInUser(creds))
       .then((result) => {
+        dispatch(FetchVaccinesFromDB())
         navigate("/home")
       })
       .catch((error) => {

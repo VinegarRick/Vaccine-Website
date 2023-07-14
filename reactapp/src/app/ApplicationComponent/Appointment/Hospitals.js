@@ -7,8 +7,14 @@ let Hospitals = ()=>{
     const dispatch = useDispatch()
 
     const [selectedVaccine, setSelectedVaccine] = useState("")
-    const vaccineList = ["Vaccine 1", "Vaccine 2", "Vaccine 3"] // Replace with your actual vaccine list
+    const [vaccineList, setVaccineList] = useState([])
+    const vaccines = useSelector((state) => state.vaccineReducer.vaccines);
   
+    useEffect(()=> {
+        const vaccineNames = vaccines.map((vaccine) => vaccine.name)
+        setVaccineList(vaccineNames)
+    }, [vaccines])
+
     const handleVaccineChange = (event) => {
       setSelectedVaccine(event.target.value)
     };

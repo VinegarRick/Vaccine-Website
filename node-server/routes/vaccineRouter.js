@@ -33,7 +33,7 @@ vaccineRoutes.post("/api/savevaccine", (req, res) => {
     });
 });
   
-vaccineRoutes.get("/api/getvaccines", (req, res) => {
+vaccineRoutes.post("/api/getvaccines", (req, res) => {
   VaccineModel
     .find()
     .then((allvaccines) => {

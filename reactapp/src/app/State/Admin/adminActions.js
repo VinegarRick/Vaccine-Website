@@ -1,5 +1,6 @@
 import * as actionTypes from "../actionTypes";
 import axios from "axios";
+import { AddVaccineToStore } from "../Vaccine/vaccineActions";
 
 /*export const signUpUser = (newuser) => {
     return (dispatch) => {
@@ -22,6 +23,7 @@ export const saveVaccineToDB = (newvaccine) => {
                 .post("http://localhost:9000/vaccine/api/savevaccine", newvaccine)
                 .then((response) => {
                     resolve({data: response.data, status: response.status});
+                    dispatch(AddVaccineToStore(newvaccine))
                 })
                 .catch((err) => {
                     console.log("Error while saving new vaccine: ", err);

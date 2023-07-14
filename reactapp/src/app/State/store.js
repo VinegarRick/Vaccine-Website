@@ -4,6 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import thunk from "redux-thunk"; 
 
 import userReducer from "./User/userReducer";
+import vaccineReducer from "./Vaccine/vaccineReducer";
 
 const logger = () => (next) => (action) => {
     console.log("Logged Action : Store File ", action);
@@ -11,7 +12,8 @@ const logger = () => (next) => (action) => {
 }
 
 const rootReducer = combineReducers({
-    userReducer
+    userReducer,
+    vaccineReducer
 })
 
 export default configureStore(

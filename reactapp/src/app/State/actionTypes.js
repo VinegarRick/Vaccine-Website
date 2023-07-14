@@ -8,3 +8,7 @@ export const SignOut = "USER.SIGNOUT";
 export const UserAlreadyExists = "USER.USERALREADYEXISTS";
 
 export const IncorrectUserCreds = "USER.INCORRECTUSERCREDS";
+
+export const AddVaccineToStore = "VACCINE.ADDVACCINETOSTORE";
+
+export const AddVaccineListToStore = "VACCINE.ADDVACCINELISTTOSTORE";
